@@ -1,0 +1,134 @@
+Reading/Loading data into a DataFrame:
+
+input_path = "dbfs:/FileStore/users.json"
+#df1 = spark.read.format("json").load(input_path)
+#df1 = spark.read.load(input_path, format="json")
+df1 = spark.read.json(input_path)
+
+df1.collect()
+df1.schema
+df1.show()
+df1.printSchema()
+
+DROPPING NULL VALUES :
+df.na.drop(how='all')            --> it drops only if all values in a rows are nulls
+df.na.drop(how='any',thresh=2)   --> it drops values in a row with more than 2 nulls
+df.na.drop(how='any',subset=['column name'])
+
+FILLING THE MISSING VALUES :
+df.na.fill('No data')      --> fill the null with NODATA in all cols
+df.na.fill('No data',['col1','col2'])  --> it fills the null values with NODATA values in specific cols
+
+
+
+CREATING OWN SCHEMA :
+
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType
+
+json_schema = StructType(
+    [
+        StructField('ORIGIN_COUNTRY_NAME', StringType(), True), 
+        StructField('DEST_COUNTRY_NAME', StringType(), True), 
+        StructField('count', IntegerType(), True)
+    ]
+)
+
+json_df = spark.read.json(input_path, schema=json_schema)
+
+Other Way:
+
+# Initialize Spark Session
+spark = SparkSession.builder.appName('structExample').getOrCreate()
+
+# Define Schema
+schema = StructType([
+  StructField("firstName", StringType(), True),
+  StructField("lastName", StringType(), True),
+  StructField("email", StringType(), True),
+  StructField("salary", IntegerType(), True)
+])
+
+# Create data
+data = [("James", "Smith", "james.smith@example.com", 3000),
+        ("Michael", "Rose", "michael.rose@example.com", 4000),
+        ("Robert", "Williams", "robert.williams@example.com", 4000)]
+
+# Create DataFrame
+df = spark.createDataFrame(data=data, schema=schema)
+df.show()
+
+
+UDF User Defined Function:
+
+def myfun(count,VLS):
+    if VLS == "Mic":
+        return count+10
+    elif VLS == "Chair":
+        return count+20
+    else:
+        return count+30
+
+MyUDF = udf(myfun,IntegerType())
+
+df3 = df2.withColumn("NewCount",MyUDF(col("count"),col("VLS")))
+display(df3)
+
+
+
+To change column datatype : 
+df.withColumn("rating",col("rating").cast(IntegerType())
+
+To remove extra characters in column : --> ex: 10000+, 2$
+
+df.withColumn("views",regex_replace(col("views"),"[^0-9]",""))   ----> 10000
+df.withColumn("price",regex_replace(col("price"),"[$]",""))   -----> 2
+
+
+LOAD THE DATA FROM PYSPARK NOTEBOOK TO AWS RDS AND QUERY THROUGH POSTGRESSQL
+# Databricks notebook source
+dbutils.fs.rm("/FileStore/tables", True)
+
+# COMMAND ----------
+
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import lit, col, explode
+import pyspark.sql.functions as f
+
+# COMMAND ----------
+
+# Extract
+spark = SparkSession.builder.appName("ETL Pipeline").getOrCreate()
+df = spark.read.text("/FileStore/tables/WordData.txt")
+
+# COMMAND ----------
+
+# Transformation
+df2 = df.withColumn("splitedData", f.split("value"," "))
+df3 = df2.withColumn("words", explode("splitedData"))
+wordsDF = df3.select("words")
+wordCount = wordsDF.groupBy("words").count()
+
+# COMMAND ----------
+
+# Load
+
+driver = "org.postgresql.Driver"
+url = "jdbc:postgresql://database-1.c0sanhw4ymut.us-west-2.rds.amazonaws.com/"
+table = "ahmad_schema_pyspark.WordCount"
+user = "postgres"
+password = ""
+
+wordCount.write.format("jdbc").option("driver", driver).option("url",url).option("dbtable", table).option("mode", "append").option("user",user).option("password", password).save()
+
+Once the data is loaded we can load it to any required file formats.
+
+dfdrugs.write.format('parquet').save('Target_Directory_path')
+
+https://www.sparkcodehub.com/pyspark-date-time-operations
+
+
+
+
+
+
+

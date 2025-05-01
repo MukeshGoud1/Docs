@@ -1,0 +1,274 @@
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+# occurence of each letter 
+''' a ="aaabbbccccccccccc"
+l=[]
+def fun(a):
+    c=1
+    for i in range(1,len(a)):
+        if a[i]==a[i-1]:
+            c=c+1
+        else:
+            l.append(c)
+            c=1
+    l.append(c)
+    return l   
+print(fun(a))     
+
+a= "program"
+b ="programming"
+
+l1 = sorted(set(a) | set(b))
+l2 = sorted(set(a) & set(b))
+m = set(l1) -set(l2)
+print(m)   
+
+s=[3,7,-1,0,5,6]
+l=sorted(s)
+(max(l))
+
+
+for i in range(1,max(l)):
+    if l[i] != l[i-1]+1:
+        lst.append((l[i-1]+1))
+print(lst)  
+
+# frequency of word
+str = "how they come and how they wnt on wnt each each step"
+m= str.split()
+d={}
+for i in m:
+    if i not in d.keys():
+        d[i] = 0
+    d[i]= d[i]+1
+print(d) 
+ # making l1 & l2 as dictionary
+l1 =("1","2","3")
+l2 = ("one","two","three")
+result = dict(zip(l1,l2))
+print(result)   
+
+# least positive number
+m=[-1,0,2,3,4,5,9]
+l=[]
+for i in range(min(m),max(m)):
+    if i not in m:
+        l.append(i)
+print(l)  
+
+# smallest diff between 2 numbers
+m=[1,4,5,10,15,19,25,35]
+min_diff = 999*999
+for i in range(0,len(m)-1):
+    if m[i+1]-m[i] < min_diff:
+        min_diff = m[i+1]-m[i]
+print("small {0} - {1} :".format(m[i+1],m[i]) ,(min_diff)) 
+
+m= "knowing"
+l =m.split()
+for i in l:
+    s=i
+print(len(s)) 
+
+# occurence -- o/p : [4, 3, 3, 4, 1]
+m =[1,1,1,1,2,2,2,3,3,3,4,4,4,4,5]
+d={}
+for i in m:
+    if i not in d.keys():
+        d[i]=0
+    d[i]=d[i]+1
+lst =[]
+for key,values in d.items():
+    lst.append(values)
+print(lst)  
+
+# firstname from list
+m=["rohit sharma","sachin tendulkar", "virender sehwag"]
+l=[]
+for i in m:
+    s =i.split()
+    l.append(s[0])
+print(l)   
+
+m =[(1,2),(2,3),(3,4),(9,9)]
+s=[]
+for i in range(len(m)):
+    s.append(m[i][1])
+print(s) 
+
+
+# sort the numbers in array
+m = [12,4,2,1,24,15,10,50,11,29]
+for i in range(len(m)):
+    for j in range(i+1,len(m)):
+        if m[i]>m[j]:
+            m[i],m[j]=m[j],m[i]
+print(m)
+
+m ="madam"
+if m == m[::-1]:
+    print("palindrome")
+else:
+    print("not") 
+
+# sort the dict
+m={1:20,2:23,5:45,3:44,50:45,15:33}
+s= sorted(m.keys())
+d={}
+for i in s:
+    d[i]=m[i]
+print(d)
+
+
+***********REVERSE THE STRING ***************
+m ="how are you"
+l = (m.split()[::-1])
+print(' '.join(l)) 
+
+
+# max and min element in list
+m=[5,7,4,9,3,10,35,20,300]
+min=9999999
+max=0
+for i in m:
+    if i>max:
+        max=i
+    if i<min:
+        min =i
+print(max,min) 
+
+# count vowels in string
+
+m="aeiouaeiou"
+s=['a','e','i','o','u']
+count =0
+for i in m:
+    if i in s:
+        count+=1
+print(count) 
+
+# occurences
+
+m=[1,1,2,2,3,3,3,8,8,7,7,4,4,4,4,5,5,5,5,5,6,6]
+s= sorted(m)
+# print(s)
+d={}
+for i in s:
+    if i in d:
+        d[i]+=1
+    else:
+        d[i]=1
+l=[]
+for key,values in d.items():
+    # l.append(i)
+    print(values)  
+
+# pair of elements     
+m = [2,5,3,4,1,6,10,9]
+s = sorted(m)   --> [1,2,3,4,5,6,9,10]
+print(s)
+target=7
+left=0
+right=len(s)-1
+while(s[left]<=s[right]):
+    if (s[left]+s[right]) < target:
+        left+=1
+    elif (s[left]+s[right]) > target:
+        right-=1
+    elif (s[left]+s[right]) == target:
+        print("values are",s[left],s[right])
+        print(left,right)
+        left+=1
+        right-=1 
+
+def fun(m,target):
+    s = sorted(m)
+    print(s)
+    target=7
+    left=0
+    right=len(s)-1
+    while(s[left]<=s[right]):
+        if (s[left]+s[right]) < target:
+            left+=1
+        elif (s[left]+s[right]) > target:
+            right-=1
+        elif (s[left]+s[right]) == target:
+            print("values are",s[left],s[right])
+            print(left,right)
+            left+=1
+            right-=1
+
+
+print("executing the program........")            
+fun([2,5,3,4,1,6,10,9],7) '''
+
+m = int(input())
+if m ==1:
+    print("prime")
+for i in range(1,m):
+    if m%i==0:
+        print("not a prime")
+    else:
+        print("prime")
+
+*******FLATTEN THE NESTED LIST  **********
+
+def fun(m):
+    l=[]
+    for i in m:
+        if (type(i) is list):
+           l.extend(fun(i))
+        else:
+            l.append(i)
+    return l
+m=[1,2,[3,4,[5,6,88],10,25,[44,55]]]
+print(fun(m))
+
+
+I'm Working in GILEAD project for last 2+ years and going to release in few days. Now I'm actively looking for new project opportunities and Ready to upgrade my skills as per the project requirements.
+
+SKILLS : SQL, PySpark,Apache Spark, AWS(S3, GLUE, IAM, Cloud Watch), Python, Linux, OBIEE, Oracle Analytics Server, Power BI, Apache Airflow, Jira, Service Now, Git
+
+DESIGNATION : ASSOCIATE
+
+Please let me know if there is any active opening role.
+
+I'm actively looking for new project opportunities.Ready to upgrade my skills as per the project requirements. 
+
+Primary Skills  : SQL, PySpark, AWS(S3, GLUE, IAM, Cloud Watch),Python,Linux,OBIEE,Oracle Analytics Server
+Secondray Skills:  Power BI, Apache Airflow,GIT,Jira, Service Now
+
+Please let me know if there is any vacany under your project.
+
+I'm actively looking for new project opportunities
+
+single Data Processing Unit (DPU) provides 4 vCPU and 16 GB of memory.
+
+
+Design and implemented scalable AWS pipelines using ETL framework, PySpark and Databricks technologies
+
+Managing end to end data pipelines and ETL processes
+
+Writing complex SQL queries for data extraction, transformation and loading processes
+
+Building and optimizing data solutions on AWS services such as S3, EMR, Athena and Redshift
+
+Utilized GitHub for version control and code deployment
+
+        
+        
+
+        
+
+    
+    
+
+
+
+
+
+
+
+
+
+            
