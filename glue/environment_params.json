@@ -1,0 +1,277 @@
+{
+  "@CommentsHeader": {
+    "JSON-Instance": "ingestion_environment_params.json",
+    "Purpose": "This json is used to define the Ingestion-level global variables hadoop options/s3 disct cp options can be provided depending on versions",
+    "Created by": "ZS Associates",
+    "Created on": "20th November 2017",
+    "Consuming module": "All Python modules",
+    "Last changed on": "15th April 2021",
+    "Last changed by": "Srinivas",
+    "Reason for change": "Account Migration"
+  },
+  "GlueParams": {
+    "pre_landing_job_name": "PreLanding",
+    "file_check_job_name": "FileCheck",
+    "landing_job_name": "Landing",
+    "pre_dqm_job_name": "PreDQM",
+    "dqm_job_name": "DQM",
+    "dqm_filter_job_name": "Staging",
+    "archive_job_name": "Archive",
+    "update_status_job_name": "UpdateStatus",
+    "publish_job_name": "Publish",
+    "dataset_lineage_job_name": "IngestionLineage",
+    "dw_publish_job_name": "PublishDW",
+    "job_executor_job_name": "JobExecutor",
+    "launch_ddl_creation_job_name": "DDLCreation",
+    "populate_dependency_job_name": "PopulateDependency",
+    "dw_lineage_job_name": "DWLineage"
+  },
+  "EnvironmentParams": {
+	"handle_empty_file" : true,
+    "environment": "PRD",
+    "environment_logging": "",
+    "logging_elk_host": "",
+    "logging_elk_port": "",
+    "kibana_port": "",
+    "hive_port": "",
+    "mysql_host": "ccf-prd-aurora-db-cluster.cluster-c3ywaaql7kll.us-west-2.rds.amazonaws.com",
+    "s3_bucket_name": "gilead-gna-prd-us-west-2-raw",
+    "ingestion_lineage_history_path": "prd/lineage/ingestion/history/dataset_id={dataset_id}/",
+    "ingestion_lineage_latest_path": "prd/lineage/ingestion/latest/dataset_id={dataset_id}/",
+    "dw_lineage_history_path": "prd/lineage/dw/history/process_id={process_id}/cycle_id={cycle_id}/",
+    "dw_lineage_latest_path": "prd/lineage/dw/latest/process_id={process_id}/cycle_id={cycle_id}/",
+    "dw_s3_rule_file_history": "prd/dw_rules_history/process_id={process_id}/cycle_id={cycle_id}",
+    "dw_s3_rule_file_latest": "prd/dw_rules_latest/process_id={process_id}/cycle_id={cycle_id}",
+    "mysql_port": "3306",
+    "mysql_username": "db_admin",
+    "mysql_db": "ccf_edp_audit_information",
+    "ftp_aws_region": "us-west-2",
+    "aws_region": "us-west-2",
+    "postgres_host": "",
+    "postgres_port": "",
+    "postgres_username": "",
+    "postgres_password": "",
+    "postgres_databasename": "",
+    "postgres_url": "",
+    "postgres_schemaname": "",
+    "git_connection_details": {
+      "repository_name": "AWS-EDP",
+      "username": "dW1laHJhMQ==",
+      "password": "Z2hwX2wzbjdnUVI0c2pqallCa2dPWTRmVlBkWnJMVE5JYjRWR3FUSw==",
+      "branch_name": "feature_case_senstivity"
+    },
+    "account_name": "hr",
+    "ftp_connection_details": {
+        "1": {
+        "ftp_server" : "",
+        "ftp_username" : "",
+        "ftp_pwd_secret_name" : ""
+        }
+  },
+    "cluster_mode": "EMR",
+    "airflow_environment":"edp-gna-hr-prd",
+    "s3_region": "us-west-2",
+    "rds_password_secret_name": "arn:aws:secretsmanager:us-west-2:244530306763:secret:rds-db-credentials/cluster-CABWYVKVWNF7J5KXFKO57XTQNA/db_admin-luH6eu",
+    "spline_enable_flag": "N",
+    "s3_region_endpoint": "s3-us-west-2.amazonaws.com",
+    "keytab_file": "",
+    "kerberos_principal": "",
+    "spark_max_thread_limit": 2,
+    "private_key_loaction": "",
+    "ses_region": "us-west-2",
+    "email_template_path": "/usr/local/airflow/plugins/code",
+    "email_type_configurations": {
+      "batch_status": {
+        "template_name": "ingestion_status.html",
+        "subject": "[$$env$$] Data Ingestion Process: $$status$$",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Pransh.Saxena@gilead.com","Rushikesh.Sakhare@gilead.com","Parichay.Jain7@gilead.com"
+        ],
+        "notification_flag": "Y"
+      },
+      "dqm": {
+        "template_name": "dqm_status.html",
+        "subject": "[$$env$$] Data Ingestion Process: DQM SUMMARY",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com", "Pransh.Saxena@gilead.com", "Rushikesh.Sakhare@gilead.com"
+        ],
+        "notification_flag": "Y"
+      },
+      "variable_file_ingestion": {
+        "template_name": "Variable_File_Ingestion_Template.html",
+        "subject": "[$$env$$] Data Ingestion Process: VARIABLE FILE INGESTION SUMMARY",
+        "sender": "#HRA_Alerts@gilead.com",
+        "recipient_list": [
+          "Parichay.Jain7@gilead.com","Pransh.Saxena@gilead.com", "Rushikesh.Sakhare@gilead.com"
+        ],
+        "notification_flag": "Y"
+      },
+      "cycle_status": {
+        "template_name": "dw_status.html",
+        "subject": "[$$env$$] DW Process: $$status$$",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ],
+        "notification_flag": "Y"
+      },
+      "dw_dqm_status": {
+        "template_name": "dw_dqm_status.html",
+        "subject": "[$$env$$] DW DQM Process: $$status$$",
+        "sender": "#HRA_Alerts@gilead.com",
+        "environment": "PRD",
+        "recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ],
+        "notification_flag": "Y"
+      },
+      "ganglia_report": {
+        "template_name": "Ganglia_Report_Template.html",
+        "subject": "[$$env$$] Ganglia report for cluster: $$master_node_dns$$",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ]
+      },
+       "auto_terminate": {"subject": "[URGENT] - Action Required - Long Running EMRs detected",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ]
+      },
+       "orphan_terminate": {
+        "subject": "[CC] Orphan EMR Clusters Termination",
+        "ses_sender": "#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ]
+      }
+    },
+    "countrySCD_column_check": {
+        "template_name": "countrySCD_column_check.html",
+        "subject": "[$$env$$] DW SCD/Country column check Process: $$status$$",
+        "ses_sender":"#HRA_Alerts@gilead.com",
+        "ses_recipient_list": [
+          "Parichay.Jain7@gilead.com"
+        ],
+
+        "notification_flag": "N"
+      },
+    "dqm_s3_error_location": "s3://gilead-gna-prd-us-west-2-raw/prd/dqm/dqm_error_details",
+    "dw_dqm_error_location":"s3://gilead-gna-prd-us-west-2-raw/prd/dqm/dqm_error_details/dw/",
+    "dqm_s3_summary_location": "s3://gilead-gna-prd-us-west-2-raw/prd/dqm/dqm_summary",
+    "validation_s3_error_location": "/prd/applications/dqm/dqm_summary",
+    "spark_logs_s3_path": "s3a://gilead-gna-prd-us-west-2-raw/code/sparkapphistory/",
+    "dqm_database_name":"ccf_edp_staging_prd",
+   "redshift_params": {
+      "SERVER": {
+         "host": "edp-northstar-prd-redshift.cu7j8eolvi8p.us-west-2.redshift.amazonaws.com",
+        "port": 5439,
+        "user": "dbadmin",
+        "password": "arn:aws:secretsmanager:us-west-2:978920580473:secret:redshift_password-6yhPlZ",
+        "db": "gilead_us_edp_northstar_dev",
+        "iam_role": "arn:aws:iam::719675892681:role/edp-northstar-prd-redshift",
+        "password_key":"arn:aws:secretsmanager:us-west-2:978920580473:secret:redshift_password-6yhPlZ",
+        "s3_access_key": "",
+        "s3_secret_key": "",
+        "ssl": "True",
+        "retry_limit":1,
+        "operation":"TRUNCATE",
+        "schema":"public",
+        "primary_key" : "primary_key",
+        "primary_key_value" : "primary_key_value",
+        "cluster": "edp-northstar-prd-redshift",
+        "timeout":120000000,
+        "table_format": "parquet",
+        "interval": "10 min",
+        "region": "us-west-2",
+        "debug": "True"
+      },
+      "APPLICATION": {
+        "s3_bucket": "gilead-gna-prd-us-west-2-raw",
+        "table_format": "parquet",
+        "delimiter": "|",
+        "retry_limit": 5,
+        "timeout": 120000000
+      }
+    },
+    "wlm_params": {
+      "APPLICATION": {
+        "aws_region": "us-west-2",
+        "parameter_group": "redshift-prd"
+      }
+    },
+    "neptune_connection_details": {
+      "endpoint": "",
+      "port": "8182",
+      "region": "us-west-2",
+      "iamRoleArn": ""
+    },
+    "s3_graph_base_path": "graph_load",
+    "lineage_rdf_path": "{process}/{entity_name}/{run_id}",
+    "archive_rdf_path": "archive/{run_id}/{domain_name}/{process}",
+    "taxonomy_rdf_path": "taxonomy/{run_id}/{table_name}/{domain_name}",
+    "rds_table_snapshot_path": "rds_snapshots/{run_id}/{table_name}/{domain_name}",
+    "databrew_role_arn": "",
+    "databrew_tags":
+    {
+            "Workstream": "hr"
+    },
+    "dataset_list": [],
+    "layer_list": [],
+    "aws_account_id": "285936246797",
+    "databrew_region": "us-west-2",
+    "s3_profiler_process_base_path": "profiler/process",
+    "SourceArn":"arn:aws:ses:us-west-2:285936246797:identity/#HRA_Alerts@gilead.com",
+    "account_id":"10",
+    "sub_account_id":"1"
+  },
+  "hadoop_options": {
+      "fs.s3a.multipart.uploads.enabled": "",
+      "fs.s3a.multipart.uploads.block.size": "",
+      "mapred.job.queue.name": "",
+      "fs.s3a.server-side-encryption-algorithm": "",
+      "mapreduce.map.memory.mb": "",
+      "mapreduce.reduce.memory.mb": ""
+  },
+  "s3_distcp__options": {
+    "multipartUploadChunkSize": "",
+    "outputCodec": "",
+    "s3Endpoint": "",
+    "storageClass": ""
+  },
+  "s3_options": {
+    "server_side_encryption": false,
+    "uri_scheme": "s3"
+  },
+  "airflow_db_config": {
+    "db_host": "localhost",
+    "db_port": 3306,
+    "db_username": "",
+    "db_password": "",
+    "db_name": ""
+  },
+  "rdbms_configs":{
+    "rdbms_qa_service_name": "ZS.COM",
+    "rdbms_qa_host": "",
+    "rdbms_qa_port": "",
+    "rdbms_qa_username": "",
+    "rdbms_qa_password": "",
+    "rdbms_qa_database": "",
+    "rdbms_prd_service_name": "ZS.COM",
+    "rdbms_prd_host": "",
+    "rdbms_prd_port": "",
+    "rdbms_prd_username": "",
+    "rdbms_prd_password": "",
+    "rdbms_prd_database": "",
+    "rdbms_latam_service_name": "ZS.COM",
+    "rdbms_latam_host": "",
+    "rdbms_latam_port": "",
+    "rdbms_latam_username": "",
+    "rdbms_latam_password": "",
+    "rdbms_latam_database": ""
+  }
+
+}
